@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>lessen three</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-size: 13px;
+			}
+			.lesson {
+				width: 600px;
+				margin: 10px auto;
+				border: 1px dashed;
+				padding: 5px;
+			}
+			#demo1 button {
+				padding: 2px 10px;
+			}
+			#demo2 input,#demo3 button,#demo4 input {
+				width: 100px;
+				height: 25px;
+			}
+			#demo6 input,#demo6 button {
+				width: 80px;
+				height: 20px;
+			}
+			#demo7 {
+				position: relative;
+				width: 290px;
+				border: 5px solid orange;
+			}
+			#demo7 .top {
+				color: white;
+				background-color: #333;
+				text-align: right;
+				font-size: 12px;
+				padding: 5px;
+			}
+			#demo7 .screen1 {
+				height: 10px;
+				background-color: rgba(0,0,0,.1);
+				text-align: right;
+				line-height: 10px;
+				font-size: 10px;
+				padding-right: 15px;
+				padding-top: 5px;
+			}
+			#demo7 .screen2 {
+				height: 70px;
+				background-color: rgba(0,0,0,.1);
+				text-align: right;
+				line-height: 70px;
+				font-size: 50px;
+				font-weight: bold;
+				padding-right: 5px;
+			}
+			#demo7 .content {
+				position: relative;
+				height: 300px;
+				background-color: #333;
+			}
+			#demo7 .content .item {
+				position: absolute;
+				color: white;
+				font-size: 25px;
+			    font-weight: bold;
+			    text-align: center;
+			    cursor: pointer;
+			    outline: 0;
+			    border-radius: 10px;
+			    border-color: #999;
+			}
+			.type1 {
+			    width: 63px;
+			    height: 40px;
+			    line-height: 38px;
+			    background: -webkit-linear-gradient(top,lightgrey,#333);
+			}
+			.type1:hover {
+				background: -webkit-linear-gradient(top,#333,lightgrey);
+			}
+			.type2 {
+			    width: 63px;
+			    height: 40px;
+			    line-height: 38px;
+			    background: -webkit-linear-gradient(top,grey,#000);
+			}
+			.type2:hover,.type3:hover {
+				background: -webkit-linear-gradient(top,#000,grey);
+			}
+			.type3 {
+				width: 130px;
+			    height: 40px;
+			    line-height: 38px;
+			    background: -webkit-linear-gradient(top,grey,#000);
+			}
+			.type4 {
+				width: 63px;
+			    height: 95px;
+			    background: -webkit-linear-gradient(top,grey,#000);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="demo1" class="lesson">
+			1、 用 typeof 查看数据类型 <br />
+			123 <button onclick="alert(typeof 123)">a</button><br />
+			"123" <button onclick='alert(typeof "123")'>b</button><br />
+			document <button onclick="alert(typeof document)">c</button>
+		</div>
+		<div id="demo2" class="lesson">
+			2、 用 parseInt() 解析数字并求和 <br />
+			<input type="text" /><strong>+</strong><input type="text" /><strong>=</strong><input type="text" />
+		</div>
+		<div id="demo3" class="lesson">
+			3、累加按钮，自增1<br />
+			<button>0</button>
+		</div>
+		<div id="demo4" class="lesson">
+			4、输入2个数字，比较大小<br />
+			<input type="text" /><strong>VS</strong><input type="text" /><strong>比较大的数字是：</strong><input type="text" />
+		</div>
+		<div id="demo5" class="lesson">
+			5、每间隔1秒，累加1
+			<button onclick="timer()">开始</button><h1></h1>
+		</div>
+		<div id="demo6" class="lesson">
+			6、判断输入的字数是几位数：<br />
+			<input type="text" /><button>判断</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var demo2inputs = document.getElementById("demo2").getElementsByTagName("input");
+		for(var i = 0;i<demo2inputs.length;i++){
+			demo2inputs[i].onkeyup=function(){
+				this.value = this.value.replace(/[^\d]/,"");
+				demo2inputs[demo2inputs.length-1].value = parseInt(demo2inputs[0].value) + parseInt(demo2inputs[1].value);
+			}
+		}
+		/*------------------------------------------------*/
+		var num = 0;
+		document.getElementById("demo3").getElementsByTagName("button")[0].onclick = function(){
+			num++;
+			this.innerText = num;
+		}
+		/*------------------------------------------------*/
+		var demo4inputs = document.getElementById("demo4").getElementsByTagName("input");
+		for(var i = 0;i<demo4inputs.length;i++){
+			demo4inputs[i].onkeyup=function(){
+				this.value = this.value.replace(/[^\d]/,"");
+				demo4inputs[demo4inputs.length-1].value = parseInt(demo4inputs[0].value) > parseInt(demo4inputs[1].value)?parseInt(demo4inputs[0].value):parseInt(demo4inputs[1].value);
+			}
+		}
+		/*------------------------------------------------*/
+		var demo5num = 0;
+		function timer(){
+			setInterval(function(){
+				document.getElementById("demo5").getElementsByTagName("h1")[0].innerHTML = demo5num;
+				demo5num++;
+			},1000)
+		}
+		/*------------------------------------------------*/
+		var demo6input = document.getElementById("demo6").getElementsByTagName("input")[0];
+		var demo6btn = document.getElementById("demo6").getElementsByTagName("button")[0];
+		demo6input.onkeyup=function(){
+			this.value = this.value.replace(/[^\d]/,"");
+		}
+		demo6btn.onclick = function(){
+			alert(demo6input.value.length+"位数");
+		}
+	</script>
+</html>
